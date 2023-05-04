@@ -1,0 +1,70 @@
+﻿'E.exe' (Win32): Loaded 'C:\Users\avata\source\repos\E\Debug\E.exe'. Symbols loaded.
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ntdll.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\kernel32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\KernelBase.dll'. 
+'E.exe' (Win32): Loaded 'C:\Users\avata\source\repos\E\Debug\freeglutd.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\user32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\win32u.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\gdi32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\gdi32full.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\msvcp_win.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ucrtbase.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\advapi32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\msvcrt.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\sechost.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\rpcrt4.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\msvcp140d.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\glu32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\opengl32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\combase.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\vcruntime140d.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ucrtbased.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\winmm.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\imm32.dll'. 
+The thread 0x9f20 has exited with code 0 (0x0).
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\uxtheme.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\msctf.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\oleaut32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\kernel.appcore.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\bcryptprimitives.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\clbcatq.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\AppXDeploymentClient.dll'. 
+'E.exe' (Win32): Unloaded 'C:\Windows\SysWOW64\AppXDeploymentClient.dll'
+'E.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\ig9icd32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ole32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\shell32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\dwmapi.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\dxgi.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ResourcePolicyClient.dll'. 
+'E.exe' (Win32): Unloaded 'C:\Windows\SysWOW64\ResourcePolicyClient.dll'
+'E.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\igdgmm32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\igdml32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\version.dll'. 
+'E.exe' (Win32): Unloaded 'C:\Windows\SysWOW64\version.dll'
+'E.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\igc32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\powrprof.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\umpdc.dll'. 
+The thread 0x1e58 has exited with code 1 (0x1).
+'E.exe' (Win32): Unloaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\igdml32.dll'
+'E.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\igdml32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\TextInputFramework.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\CoreMessaging.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\CoreUIComponents.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ws2_32.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\SHCore.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\ntmarta.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\WinTypes.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\WinTypes.dll'. 
+'E.exe' (Win32): Loaded 'C:\Windows\SysWOW64\WinTypes.dll'. 
+'E.exe' (Win32): Unloaded 'C:\Windows\SysWOW64\WinTypes.dll'
+'E.exe' (Win32): Unloaded 'C:\Windows\SysWOW64\WinTypes.dll'
+The thread 0x2e90 has exited with code 1 (0x1).
+'E.exe' (Win32): Unloaded 'C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_a086f01cc7be643a\igdml32.dll'
+The thread 0x69d8 has exited with code 0 (0x0).
+The thread 0x793c has exited with code 0 (0x0).
+The thread 0x6574 has exited with code 0 (0x0).
+The thread 0x9144 has exited with code 0 (0x0).
+The thread 0xd58 has exited with code 0 (0x0).
+The thread 0x725c has exited with code 0 (0x0).
+The thread 0x70cc has exited with code 0 (0x0).
+The program '[37852] E.exe' has exited with code 0 (0x0).
