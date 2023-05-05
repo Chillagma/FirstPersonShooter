@@ -555,7 +555,7 @@ void display() {
    glDisable(GL_DEPTH_TEST);
    glDisable(GL_LIGHTING);
     glDisable(GL_BLEND);
-
+    ///comment for github
     // Just in case we set all vertices to white.
     glColor4f(1, 1, 1, 1);
 
