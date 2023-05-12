@@ -5,6 +5,7 @@
 #include <time.h>
 #include <vector>
 
+
 #include <freeglut.h>
 //#include<glad.h>
 #include <glext.h>
@@ -16,13 +17,14 @@
 #include<iostream>
 #include<tiny_obj_loader.h>
 
-
+//#include<idea.glsl>
 //test
 //another test
 //another test too
 
-//#include<graphics.h>
 
+
+void timer(int);
 
 //test
 #define WIDTH 600
@@ -48,6 +50,7 @@ const GLchar* fragment_shader =
 "}";*/
 float i = 0.0;
 float j = -200.0;
+int iRandom = (rand() % 555) + 1;
 class aclass {
     
 
@@ -59,7 +62,7 @@ public:
     const std::vector<tinyobj::material_t, std::allocator<tinyobj::material_t> >
         materials = reader.GetMaterials();
     std::vector<GLdouble*> function() {
-        std::string inputfile = "part.obj";
+        std::string inputfile = "Part.obj";
         tinyobj::ObjReaderConfig reader_config;
         reader_config.mtl_search_path = "./";  // Path to material files
 
@@ -79,7 +82,7 @@ public:
         auto& attrib = reader.GetAttrib();
         auto& shapes = reader.GetShapes();
         auto& materials = reader.GetMaterials();
-
+        
         // Loop over shapes
         std::vector<GLdouble*> container, container2, container3;
         for (size_t s = 0; s < shapes.size(); s++) {
@@ -95,7 +98,8 @@ public:
                     tinyobj::real_t vx =
                         attrib.vertices[3 * size_t(idx.vertex_index) + 0];
                     tinyobj::real_t vy =
-                        attrib.vertices[3 * size_t(idx.vertex_index) + 1]* sin(s* (1.0f / 60.0f));
+                        //Random = (rand() % 10) + 1;
+                        attrib.vertices[3 * size_t(idx.vertex_index)  + 1] *sin(s);
                     tinyobj::real_t vz =
                         attrib.vertices[3 * size_t(idx.vertex_index) + 2];
                     ;
@@ -154,10 +158,116 @@ public:
     };
 };
 
+class bclass {
 
+
+    tinyobj::ObjReader reader;
+
+public:
+    const tinyobj::attrib_t attrib = reader.GetAttrib();
+    const std::vector<tinyobj::shape_t, std::allocator<tinyobj::shape_t>> shapes = reader.GetShapes();
+    const std::vector<tinyobj::material_t, std::allocator<tinyobj::material_t> >
+        materials = reader.GetMaterials();
+    std::vector<GLdouble*> function() {
+       // i++;
+        std::string inputfile = "wooden_sphere.obj";
+        tinyobj::ObjReaderConfig reader_config;
+        reader_config.mtl_search_path = "./";  // Path to material files
+
+        tinyobj::ObjReader reader;
+
+        if (!reader.ParseFromFile(inputfile, reader_config)) {
+            if (!reader.Error().empty()) {
+                std::cerr << "TinyObjReader: " << reader.Error();
+            }
+            exit(1);
+        }
+
+        if (!reader.Warning().empty()) {
+            std::cout << "TinyObjReader: " << reader.Warning();
+        }
+
+        auto& attrib = reader.GetAttrib();
+        auto& shapes = reader.GetShapes();
+        auto& materials = reader.GetMaterials();
+
+        // Loop over shapes
+        std::vector<GLdouble*> container, container2, container3;
+        for (size_t s = 0; s < shapes.size(); s++) {
+            // Loop over faces(polygon)
+            size_t index_offset = 0;
+            for (size_t f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
+                size_t fv = size_t(shapes[s].mesh.num_face_vertices[f]);
+
+                // Loop over vertices in the face.
+                for (size_t v = 0; v < fv; v++) {
+                    // access to vertex
+                    tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
+                    tinyobj::real_t vx =
+                        attrib.vertices[3 * size_t(idx.vertex_index) + 0];//+25 * cos(s * ( 60.0f));
+                    tinyobj::real_t vy =
+                        attrib.vertices[3 * size_t(idx.vertex_index) + 1];// * sin(s * ( 60.0f))*10;
+                    tinyobj::real_t vz =
+                        attrib.vertices[3 * size_t(idx.vertex_index) + 2];// *cos(s * (60.0f));
+                    ;
+                    container.push_back(new GLdouble[3]{ vx, vy, vz });
+                    //  container.push_back(new GLdouble[3]{ abs(sin(i)) + 5,vy , vz });
+                      // container.push_back(new GLdouble[3]{vx ,vy , abs(sin(i)) + 5 });
+                      // glColor4f(0, cos(i/2) * 255, sin(i/2)*255, 0.5);
+
+                       // container2.push_back(vy);
+                        //container3.push_back(vz);
+
+
+                        //  container.push_back(v);
+
+                        // std::cout << val << std::endl;
+                        // return val;
+
+                        ///  std::cout << vx << std::endl;
+
+                        //  std::cout << vx << std::endl;
+
+                        // Check if `normal_index` is zero or positive. negative = no normal
+                        // data
+                    if (idx.normal_index >= 0) {
+                        tinyobj::real_t nx =
+                            attrib.normals[3 * size_t(idx.normal_index) + 0];
+                        tinyobj::real_t ny =
+                            attrib.normals[3 * size_t(idx.normal_index) + 1];
+                        tinyobj::real_t nz =
+                            attrib.normals[3 * size_t(idx.normal_index) + 2];
+                    }
+
+                    // Check if `texcoord_index` is zero or positive. negative = no
+                    // texcoord data
+                    if (idx.texcoord_index >= 0) {
+                        tinyobj::real_t tx =
+                            attrib.texcoords[2 * size_t(idx.texcoord_index) + 0];
+                        tinyobj::real_t ty =
+                            attrib.texcoords[2 * size_t(idx.texcoord_index) + 1];
+                    }
+
+                    // Optional: vertex colors
+                    // tinyobj::real_t red   =
+                    // attrib.colors[3*size_t(idx.vertex_index)+0]; tinyobj::real_t
+                    // green = attrib.colors[3*size_t(idx.vertex_index)+1];
+                    // tinyobj::real_t blue =
+                    // attrib.colors[3*size_t(idx.vertex_index)+2];
+                }
+                index_offset += fv;
+
+                // per-face material
+                shapes[s].mesh.material_ids[f];
+            }
+        }
+        return (container);
+    };
+};
 
 class Model {
     aclass e;
+   
 private:
     class Face {
     public:
@@ -178,9 +288,11 @@ private:
     std::vector<float*> normals;
     std::vector<Face> faces;
     GLuint list;
+    GLuint list2;
    
 public:
     void load(const char* filename) {
+        
         std::string line;
         std::vector<std::string> lines;
         std::ifstream in(filename);
@@ -219,6 +331,12 @@ public:
                 glVertex3f(v0, v1, v2);
             }
         }
+
+        bclass d;
+        
+        std::vector<GLdouble*> containerd = d.function();
+        
+        
         aclass e;
         e.function();
         std::vector<GLdouble*> container = e.function();
@@ -236,31 +354,41 @@ public:
         glEnable(GL_BLEND);
         for (Face& face : faces) {
           //  glutSpecialFunc(SpecialInput);
+           
             for (GLdouble* val : container)
             {
-             // glMultMatrixd(val);
-             
-                
-               //glColorMask(true,GL_FALSE, GL_FALSE, GL_FALSE);
-            //  glColor4f(255, 0, 0,0.5);
-            //  std::cout << *val << std::endl;
-            //  GLdouble* ref = val;
-             // GLdouble ref2 = *val;
-                glVertex3dv(val);
-                if ((int)val % 2 == 0) {
-                    glColor4f(0,  0,  0, 1);
+                //glMultMatrixd(val);
+             //   glColorMask(true, GL_TRUE, GL_FALSE, GL_TRUE);
+                /*if (j > 10) {
+                    glColorMask(true, GL_FALSE, GL_FALSE, GL_TRUE);
                 }
-                if ((int)(val) %3 == 0) {
+                if (j < 10) {
+                    glColorMask(true, GL_TRUE, GL_FALSE, GL_TRUE);
+                }*/
+                //  glColor4f(255, 0, 0,0.5);
+                //  std::cout << *val << std::endl;
+                //  GLdouble* ref = val;
+                 // GLdouble ref2 = *val;
+
+             // glVertex3f(*val+20,*val,*val);
+                glVertex3dv(val);
+                
+               // glTexCoord3f(2000, 2000, 2000);
+                if ((int)*val >cos(*val)) {
+                    glColor4f(0, 0, 0, 1);
+                    //std::cout << *val << std::endl;
+                    // glVertex3d(10,10,10);
+                }
+                if ((int)(val) % 3 == 0) {
                     glColor4f(0, 255, 255, 1);
-                    
+
                 }
                 if ((int)val % 7 == 0) {
                     glColor4f(255, 0, 255, 1);
                 }
-               
+
                
             }
-            
             if (face.normal >= 0){
                
                 glNormal3fv(normals[face.normal]);
@@ -286,6 +414,80 @@ public:
                  glDisable(GL_LIGHTING);
         }
         glEndList();
+        list2 = glGenLists(1);
+        glNewList(list2, GL_COMPILE);
+        //glEnable(GL_NORMALIZE);
+        glBegin(GL_POLYGON);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        for (Face& face : faces) {
+            //  glutSpecialFunc(SpecialInput);
+            glBegin(GL_QUADS);
+            for (GLdouble* val : containerd)
+            {
+                //glMultMatrixd(val);
+             //   glColorMask(true, GL_TRUE, GL_FALSE, GL_TRUE);
+                /*if (j > 10) {
+                    glColorMask(true, GL_FALSE, GL_FALSE, GL_TRUE);
+                }
+                if (j < 10) {
+                    glColorMask(true, GL_TRUE, GL_FALSE, GL_TRUE);
+                }*/
+                //  glColor4f(255, 0, 0,0.5);
+                //  std::cout << *val << std::endl;
+                //  GLdouble* ref = val;
+                 // GLdouble ref2 = *val;
+
+             // glVertex3f(*val+20,*val,*val);
+
+               
+                
+                glVertex3dv(val );
+                
+                
+                //d.function();
+               
+               
+                // glTexCoord3f(2000, 2000, 2000);
+                if ((int)*val >  cos(*val)) {
+                    glColor4f(0, 0, 0, 1);
+                    // glVertex3d(10,10,10);
+                }
+                if ((int)(val) % 3 == 0) {
+                    glColor4f(0, 255, 255, 1);
+
+                }
+                if ((int)val % 7 == 0) {
+                    glColor4f(255, 0, 255, 1);
+                }
+
+
+            }
+            if (face.normal >= 0) {
+
+                glNormal3fv(normals[face.normal]);
+            }
+
+            else
+                glEnable(GL_LIGHTING);
+
+            for (int i = 0; i < face.edge; i++)
+                if (face.vertices[i] > 0) {
+
+
+                    // glVertex3fv(vertices[face.vertices[i]]);
+                    // std::cout << vertices[face.vertices[i]] << std::endl;
+                }
+
+
+
+
+
+            glEnd();
+            if (face.normal == -1)
+                glDisable(GL_LIGHTING);
+        }
+        glEndList();
         printf("Model: %s\n", filename);
         printf("Vertices: %d\n", vertices.size());
         printf("Texcoords: %d\n", texcoords.size());
@@ -308,6 +510,7 @@ public:
         faces.clear();
     }
     void draw() { glCallList(list); }
+    void draw2() { glCallList(list2); }
 };
 
 Model model;
@@ -357,6 +560,7 @@ void skybox(void) {
     y = y - height / 2;
     z = z - length / 2;
     glBegin(GL_QUADS);
+    
     glTexCoord2f(1.0f, 0.0f); glVertex3f(x + width, y, z);
     glTexCoord2f(1.0f, 1.0f); glVertex3f(x + width, y + height, z);
     glTexCoord2f(0.0f, 1.0f); glVertex3f(x, y + height, z);
@@ -405,6 +609,7 @@ void skybox(void) {
     //glutSolidSphere(2, 40, 40);
 }
 void disply(void) {
+
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
@@ -434,7 +639,7 @@ void init() {
   //  glBindTexture(GL_TEXTURE_2D, _skybox[0]);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    GLfloat light_pos[] = { -1.0f, 10.0f, 100.0f, 1.0f };
+    GLfloat light_pos[] = { -1.0f,j, 100.0f, 1.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, light_pos);
     glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
     glMatrixMode(GL_PROJECTION);
@@ -450,8 +655,12 @@ void init() {
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glEnable(GL_TEXTURE_2D);
     glEnable(GL_DEPTH_TEST);
-
-   model.load("Lowpoly_tree.obj");
+    glutTimerFunc(1000, timer, 0);
+    model.load("Lowpoly_tree.obj");
+    //d.function();
+ 
+  
+  
 }
 
 void motion() {
@@ -472,14 +681,19 @@ void SpecialInput(int key, int x, int y)
     aclass e;
     e.function();
     std::vector<GLdouble*> container = e.function();
+    /*if (true) {
+        j = j + 5;
+    }*/
     switch (key)
     {
     case GLUT_KEY_UP:
         //do something here
+        model.load("Lowpoly_tree.obj");
         j=j+5;
         break;
     case GLUT_KEY_DOWN:
         //do something here
+        model.load("Lowpoly_tree.obj");
         j=j-5;
         break;
     case GLUT_KEY_LEFT:
@@ -500,13 +714,14 @@ void SpecialInput(int key, int x, int y)
 
         glEnable(GL_BLEND);*/ 
          i++;
-         
+         model.load("Lowpoly_tree.obj");
+        // glColorMask(true, GL_FALSE, GL_FALSE, GL_FALSE);
        /*  for (GLdouble* val : container)
          {
              // glMultMatrixd(val);
 
 
-               //glColorMask(true,GL_FALSE, GL_FALSE, GL_FALSE);
+               glColorMask(true,GL_FALSE, GL_FALSE, GL_FALSE);
            
              //  std::cout << *val << std::endl;
              //  GLdouble* ref = val;
@@ -519,6 +734,7 @@ void SpecialInput(int key, int x, int y)
     case GLUT_KEY_RIGHT:
         //do something here
         i--;
+        model.load("Lowpoly_tree.obj");
         break;
     }
     glutPostRedisplay();
@@ -535,7 +751,11 @@ void SpecialInput(int key, int x, int y)
 }*/
 
 
+int x = 0;
+bool toggle = true;
 void display() {
+   
+    //i++;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -545,6 +765,7 @@ void display() {
 
     // Reset and transform the matrix.
     glLoadIdentity();
+    
     /*gluLookAt(
         0, 0, 0,
         camera->x(), camera->y(), camera->z(),
@@ -629,6 +850,7 @@ void display() {
     for (int i = 0; i < 6; i++) {
         FreeTexture(texture[i]);
     }
+    
     // Restore enable bits and matrix
     glPopAttrib();
     glPopMatrix();
@@ -640,15 +862,52 @@ void display() {
 
         //glTranslatef(x, -30.0f, -200.0f);
     }*/
+    //i++;
+    //glPushMatrix();
+
   
-    glTranslatef(i, -10.0f, j);
-   
+    
+    glTranslatef( x, -10.0f, j);
+    
+ glPushMatrix();
+    iRandom = (rand()%5)+1;
+      if (x > 20) {
+        toggle = false;
+    }
+    if (x <- 20) {
+        toggle = true;
+    }
+    if (toggle == true) {
+        x++;
+    }
+    if (toggle == false) {
+        x--;
+    }
+    glPopMatrix();
+  glEnable(GL_COLOR_MATERIAL);
+  
+   // glPopAttrib();*/
   //  glColor4f(0, 0, 255, 0.1);
     glRotatef(30.0f, 1.0f, -1.0f, 0.0f);
-    glEnable(GL_COLOR_MATERIAL);
+  //  glRotatef(30.0f + x * 20, 1.0f, -1.0f, 0.0f);
+
+    //use this for collision
   //  
        // vCamera.y += 8.0f * fElapsedTime;
+  
     model.draw();
+  //  glutTimerFunc(1000, timer, 0);
+    glPushMatrix();
+   
+        glTranslatef(-20, -10.0f + i *5, j+225);
+   
+    
+    //d.function();
+  
+  
+    model.draw2();
+   
+    glPopMatrix();
     glutSwapBuffers();
 }
 
@@ -700,7 +959,7 @@ unsigned int skyboxIndices[] =
     3, 7, 6,
     6, 2, 3
 };
-
+using namespace std;
 
 int main(int argc, char** argv) {
    /* glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -805,13 +1064,15 @@ int main(int argc, char** argv) {
     glEnable(GL_MULTISAMPLE);
     glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
     glutSetOption(GLUT_MULTISAMPLE, 8);
-    int POS_X = (glutGet(GLUT_SCREEN_WIDTH) - WIDTH) >> 1;
+    int POS_X = (glutGet(GLUT_SCREEN_WIDTH) - WIDTH)  >> 1;
     int POS_Y = (glutGet(GLUT_SCREEN_HEIGHT) - HEIGHT) >> 1;
     glutInitWindowPosition(POS_X, POS_Y);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutCreateWindow("Game");
+    glutTimerFunc(1000, timer,0);
     init();
     glutDisplayFunc(display);
+   // glutDisplayFunc(disply);
    // glutIdleFunc(disply);
     //if (GLUT_KEY_UP)
         //  glutKeyboardFunc(keyDown);
@@ -824,9 +1085,13 @@ int main(int argc, char** argv) {
   glFlush();
   glutPostRedisplay();
   //gl_FragColor()
-  std::cin.get();
+ // std::cin.get();
  
   return 0;
 }
 
 
+void timer(int) {
+    glutPostRedisplay();
+    glutTimerFunc(1000 / 60, timer, 0);
+}

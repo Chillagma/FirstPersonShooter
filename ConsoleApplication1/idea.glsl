@@ -1,13 +1,10 @@
-#version 130
-
-#define SCALE_FACTOR 0.5
-
-varying vec4 v_color;
-varying vec2 v_texcoord;
+#version 330 core
+layout (location = 0) in vec3 aPos; // the position variable has attribute position 0
+  
+out vec4 vertexColor; // specify a color output to the fragment shader
 
 void main()
 {
-    v_color = vec4(gl_Color.rgb * SCALE_FACTOR, 1.0);
-    v_texcoord = gl_MultiTexCoord0.xy;
-    gl_Position = ftransform(); 
+    gl_Position = vec4(aPos, 1.0); // see how we directly give a vec3 to vec4's constructor
+    vertexColor = vec4(0.5, 0.0, 0.0, 1.0); // set the output variable to a dark-red color
 }
